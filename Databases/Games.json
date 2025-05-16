@@ -1,0 +1,57 @@
+{
+  "1": {
+    "name": "Gorilla Games",
+    "description": "This is a test game!",
+    "starterPlace": "2",
+    "visits": "26",
+    "likes": "86",
+    "places": [
+      "2"
+    ],
+    "voiceChat": "Supported",
+    "created": "3/21/2025",
+    "updated": "3/22/2025",
+    "genre": "Simulation",
+    "subgenre": "Sandbox",
+    "thumbnail": "https://beta.boblox.ca/gorilla-games.png",
+    "owner": {
+      "ownerId": 1,
+      "ownerType": "User",
+      "collaborators": {}
+    }
+  },
+  "5": {
+    "name": "Epic Platforms",
+    "description": "How long can you survive on the platform?",
+    "starterPlace": "6",
+    "visits": "460",
+    "likes": "74",
+    "places": [
+      "6"
+    ],
+    "voiceChat": "Supported",
+    "created": "5/12/2025",
+    "updated": "5/16/2025",
+    "genre": "Simulation",
+    "subgenre": "Sandbox",
+    "thumbnail": "https://beta.boblox.ca/Epic%20Platforms%20Egg%20Hunt%202025%20Thumbnail.png",
+    "owner": {
+      "ownerId": 1,
+      "ownerType": "User",
+      "collaborators": {}
+    }
+  },
+  "7": {
+    "name": "Boblox City",
+    "description": "This is a test game!",
+    "starterPlace": "8",
+    "places": [
+      "8"
+    ],
+    "owner": {
+      "ownerId": 1,
+      "ownerType": "User",
+      "collaborators": {}
+    }
+  }
+}

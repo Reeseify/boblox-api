@@ -1,0 +1,34 @@
+{
+  "Reese": {
+    "password": "reeseify",
+    "email": {
+      "verified": true,
+      "email": "newreeseify@gmail.com"
+    },
+    "userid": 1
+  },
+  "Key": {
+    "password": "KeyHitt666",
+    "email": {
+      "verified": false,
+      "email": ""
+    },
+    "userid": 2
+  },
+  "Reeseify": {
+    "password": "reeseify",
+    "email": {
+      "verified": true,
+      "email": "newreeseify@gmail.com"
+    },
+    "userid": 3
+  },
+  "BBP101": {
+    "password": "NotKeysAccount",
+    "email": {
+      "verified": false,
+      "email": ""
+    },
+    "userid": 4
+  }
+}
