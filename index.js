@@ -444,25 +444,36 @@ app.get('/assets/get', (req, res) => {
         return res.status(400).send('assetId is required.');
     }
 
-    const assetsData = JSON.parse(fs.readFileSync(ASSETS_FILE, 'utf-8'));
-    const gamesData = JSON.parse(fs.readFileSync(GAMES_FILE, 'utf-8'));
-    const placesData = JSON.parse(fs.readFileSync(PLACES_FILE, 'utf-8'));
-    const toolboxData = JSON.parse(fs.readFileSync(TOOLBOX_FILE, 'utf-8'));
+    try {
+        const assetsData = JSON.parse(fs.readFileSync(ASSETS_FILE, 'utf-8'));
+        const gamesData = JSON.parse(fs.readFileSync(GAMES_FILE, 'utf-8'));
+        const placesData = JSON.parse(fs.readFileSync(PLACES_FILE, 'utf-8'));
+        const toolboxData = JSON.parse(fs.readFileSync(TOOLBOX_FILE, 'utf-8'));
 
-    if (assetsData[assetId]) {
-        if (assetsData[assetId].AssetType == "Game") {
-            res.status(200).send(gamesData[assetId]);
-        } else if (assetsData[assetId].AssetType == "Place") {
-            res.status(200).send({ asset: placesData[assetId] });
-        } else if (assetsData[assetId].AssetType == "Model") {  // Fixed this line
-            res.status(200).send({ asset: toolboxData[assetId] });
-        } else if (assetsData[assetId].AssetType == "Sound") {
-            res.status(200).send({ asset: toolboxData[assetId] });
+        const asset = assetsData[assetId];
+
+        if (!asset) {
+            return res.status(404).send('Asset not found.');
         }
-    } else {
-        res.status(404).send('Asset not found.');
+
+        switch (asset.AssetType) {
+            case "Game":
+                return res.status(200).send(gamesData[assetId] || {});
+            case "Place":
+                return res.status(200).send({ asset: placesData[assetId] || {} });
+            case "Model":
+            case "Sound":
+                return res.status(200).send({ asset: toolboxData[assetId] || {} });
+            default:
+                return res.status(400).send('Unknown AssetType.');
+        }
+
+    } catch (err) {
+        console.error('[GET /assets/get] Error:', err);
+        return res.status(500).send('Internal Server Error');
     }
 });
+
 
 // Get placeFile by placeId
 app.get('/load-place', (req, res) => {
