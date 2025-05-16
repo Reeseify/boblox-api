@@ -1,0 +1,14 @@
+E:\API\ServerManagerApp\bin\Debug\net9.0-windows\ServerManagerApp.exe
+E:\API\ServerManagerApp\bin\Debug\net9.0-windows\ServerManagerApp.deps.json
+E:\API\ServerManagerApp\bin\Debug\net9.0-windows\ServerManagerApp.runtimeconfig.json
+E:\API\ServerManagerApp\bin\Debug\net9.0-windows\ServerManagerApp.dll
+E:\API\ServerManagerApp\bin\Debug\net9.0-windows\ServerManagerApp.pdb
+E:\API\ServerManagerApp\obj\Debug\net9.0-windows\ServerManagerApp.GeneratedMSBuildEditorConfig.editorconfig
+E:\API\ServerManagerApp\obj\Debug\net9.0-windows\ServerManagerApp.AssemblyInfoInputs.cache
+E:\API\ServerManagerApp\obj\Debug\net9.0-windows\ServerManagerApp.AssemblyInfo.cs
+E:\API\ServerManagerApp\obj\Debug\net9.0-windows\ServerManagerApp.csproj.CoreCompileInputs.cache
+E:\API\ServerManagerApp\obj\Debug\net9.0-windows\ServerManagerApp.dll
+E:\API\ServerManagerApp\obj\Debug\net9.0-windows\refint\ServerManagerApp.dll
+E:\API\ServerManagerApp\obj\Debug\net9.0-windows\ServerManagerApp.pdb
+E:\API\ServerManagerApp\obj\Debug\net9.0-windows\ServerManagerApp.genruntimeconfig.cache
+E:\API\ServerManagerApp\obj\Debug\net9.0-windows\ref\ServerManagerApp.dll
