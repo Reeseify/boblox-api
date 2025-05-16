@@ -15,7 +15,7 @@ const ASSETS_FILE = path.join(DATABASE_FOLDER, 'Assets.json');
 const TOOLBOX_FILE = path.join(DATABASE_FOLDER, 'Toolbox.json');
 const PASSWORD = "FxBv8K0IfK248RRHBdM3dqQEVnglHTQO/5N4G224qEyW9JuuTStmO8DTQLY0aYA0a";
 
-const CLOUDFLARED_PATH = path.join(__dirname, 'node_modules', 'cloudflared', 'bin', 'cloudflared.exe');
+//const CLOUDFLARED_PATH = path.join(__dirname, 'node_modules', 'cloudflared', 'bin', 'cloudflared.exe');
 
 const { spawn } = require('child_process');
 
@@ -525,7 +525,7 @@ app.listen(INTERNAL_PORT, '0.0.0.0', () => {
     });
 
     // Launch cloudflared tunnel
-    const tunnel = spawn(CLOUDFLARED_PATH, ['tunnel', '--url', `http://localhost:3000`]);
+    //const tunnel = spawn(CLOUDFLARED_PATH, ['tunnel', '--url', `http://localhost:3000`]);
 
     tunnel.stdout.on('data', (data) => {
         const output = data.toString();
