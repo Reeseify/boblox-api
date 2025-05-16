@@ -527,29 +527,7 @@ app.listen(INTERNAL_PORT, '0.0.0.0', () => {
     // Launch cloudflared tunnel
     //const tunnel = spawn(CLOUDFLARED_PATH, ['tunnel', '--url', `http://localhost:3000`]);
 
-    tunnel.stdout.on('data', (data) => {
-        const output = data.toString();
-        process.stdout.write(output); // Show full output
 
-        const match = output.match(/https:\/\/[^\s]+\.trycloudflare\.com/);
-        if (match) {
-            console.log(`🌍 Public Cloudflare Tunnel: ${match[0]}`);
-        }
-    });
-
-    tunnel.stderr.on('data', (data) => {
-        const output = data.toString();
-        // Print "error" only if it's a real error
-        if (output.toLowerCase().includes('error') || output.toLowerCase().includes('failed')) {
-            console.error(`❌ Tunnel error: ${output}`);
-        } else {
-            console.log(output.trim());
-        }
-    });
-
-    tunnel.on('close', (code) => {
-        console.log(`🔒 Cloudflared process exited with code ${code}`);
-    });
 
     console.log(`🚀 Server started at http://localhost:${PORT}`);
 
