@@ -1,1 +1,17 @@
-{}
+{
+  "2": {
+    "placeName": "Gorilla Games",
+    "placeDescription": "This is a test place.",
+    "gameId": "1"
+  },
+  "6": {
+    "placeName": "Epic Platforms",
+    "placeDescription": "This is a test place.",
+    "gameId": "5"
+  },
+  "8": {
+    "placeName": "Boblox City",
+    "placeDescription": "This is a test place.",
+    "gameId": "7"
+  }
+}
