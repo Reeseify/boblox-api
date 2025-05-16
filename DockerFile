@@ -1,0 +1,27 @@
+# Use the official .NET SDK image for building
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+
+WORKDIR /app
+
+# Copy only the csproj file and restore dependencies (cache optimization)
+COPY ServerManagerApp/ServerManagerApp.csproj ./ServerManagerApp/
+RUN dotnet restore ./ServerManagerApp/ServerManagerApp.csproj
+
+# Copy the rest of the source code
+COPY . ./
+
+# Build the project in Release mode
+RUN dotnet build ./ServerManagerApp/ServerManagerApp.csproj -c Release -o /app/build
+
+# Publish the app to the /app/publish folder
+RUN dotnet publish ./ServerManagerApp/ServerManagerApp.csproj -c Release -o /app/publish
+
+# Use the official ASP.NET runtime image for running
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS runtime
+WORKDIR /app
+
+# Copy the published app from the build stage
+COPY --from=build /app/publish ./
+
+# Define the entrypoint to run the app
+ENTRYPOINT ["dotnet", "ServerManagerApp.dll"]
