@@ -12,3 +12,4 @@ E:\API\ServerManagerApp\obj\Debug\net9.0-windows\refint\ServerManagerApp.dll
 E:\API\ServerManagerApp\obj\Debug\net9.0-windows\ServerManagerApp.pdb
 E:\API\ServerManagerApp\obj\Debug\net9.0-windows\ServerManagerApp.genruntimeconfig.cache
 E:\API\ServerManagerApp\obj\Debug\net9.0-windows\ref\ServerManagerApp.dll
+E:\API\ServerManagerApp\obj\Debug\net9.0-windows\ServerManagerApp.sourcelink.json
