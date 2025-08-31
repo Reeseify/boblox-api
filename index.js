@@ -7,7 +7,7 @@ const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 //const PORT = process.argv[2] || 3000;
 const PORT = 3000;
-const DATABASE_FOLDER = path.join(__dirname, 'Databases');
+const DATABASE_FOLDER = path.join(__dirname, '..', 'Databases');
 const ACCOUNTS_FILE = path.join(DATABASE_FOLDER, 'Accounts.json');
 const PLACES_FILE = path.join(DATABASE_FOLDER, 'Places.json');;
 const GAMES_FILE = path.join(DATABASE_FOLDER, 'Games.json');;
@@ -159,18 +159,19 @@ app.post("/send-email", async (req, res) => {
 
     try {
         // Send email with the code
-        const info = await transporter.sendMail({
+        /*const info = await transporter.sendMail({
             from: `"Boblox" <noreply@boblox.ca>`,
             to,
             subject: "Login Code",
             text: `Your verification code is: ${code}`,
             html: `<h1>Your verification code is: ${code}</h1>`,
-        });
+        });*/
 
-        console.log("Email Sent:", info.response);
+        //console.log("Email Sent:", info.response);
 
         // Send the code back to Roblox
         res.json({ success: true, code });
+        //res.json({ success: true, code });
     } catch (error) {
         console.error("Email Error:", error);
         res.status(500).json({ error: "Failed to send email" });
