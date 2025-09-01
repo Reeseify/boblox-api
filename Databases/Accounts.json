@@ -1,6 +1,6 @@
 {
   "Reese": {
-    "password": "reeseify",
+    "password": "reeseifyiscool",
     "email": {
       "verified": true,
       "email": "newreeseify@gmail.com"
@@ -16,7 +16,7 @@
     "userid": 2
   },
   "Reeseify": {
-    "password": "reeseify",
+    "password": "reeseiscool",
     "email": {
       "verified": true,
       "email": "newreeseify@gmail.com"
@@ -25,6 +25,14 @@
   },
   "BBP101": {
     "password": "NotKeysAccount",
+    "email": {
+      "verified": false,
+      "email": ""
+    },
+    "userid": 4
+  },
+  "ValleyGirl": {
+    "password": "valleygirl",
     "email": {
       "verified": false,
       "email": ""
