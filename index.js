@@ -193,7 +193,25 @@ app.post('/create-account', (req, res) => {
         return res.status(409).send('Account already exists.');
     }
 
-    accountsData[username] = { password };
+    // Generate a new userid — just use current timestamp if no DB counter
+    // Or calculate max existing userid + 1
+    let useridNumber = 1;
+    const allUsers = Object.values(accountsData);
+    if (allUsers.length > 0) {
+        const maxId = Math.max(...allUsers.map(u => u.userid || 0));
+        useridNumber = maxId + 1;
+    }
+
+    // Build the account object
+    accountsData[username] = {
+        password,
+        email: {
+            verified: false,
+            email: ""
+        },
+        userid: useridNumber
+    };
+
     fs.writeFileSync(ACCOUNTS_FILE, JSON.stringify(accountsData, null, 2));
     res.status(201).send('Account created successfully.');
 });
