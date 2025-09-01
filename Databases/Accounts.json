@@ -45,7 +45,15 @@
       "verified": false,
       "email": ""
     },
-    "userid": 4
+    "userid": 6
+  },
+  "Bobrix": {
+    "password": "BobrixIsCool@24",
+    "email": {
+      "verified": false,
+      "email": ""
+    },
+    "userid": 7
   },
   "r": {
     "password": "r",
