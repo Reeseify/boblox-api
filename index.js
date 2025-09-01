@@ -379,19 +379,7 @@ app.post('/login', (req, res) => {
 
 // Get password by username
 app.get('/get-password', (req, res) => {
-    const { username } = req.query;
-
-    if (!username) {
-        return res.status(400).send('Username is required.');
-    }
-
-    const accountsData = JSON.parse(fs.readFileSync(ACCOUNTS_FILE, 'utf-8'));
-
-    if (accountsData[username]) {
-        res.status(200).send({ password: accountsData[username].password });
-    } else {
-        res.status(404).send('Account not found.');
-    }
+    res.send('🔴 Access denied');
 });
 
 // Get assetType by assetId
