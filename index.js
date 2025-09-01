@@ -130,6 +130,103 @@ function decryptTransaction(encryptedData, key) {
     return substitution(detransposed, true);
 }
 
+// --- Username availability helpers ---
+function normalizeUsername(u) {
+  return String(u || "").trim();
+}
+
+function validateUsername(u) {
+  // Rules: 3–32 chars, letters/numbers/_-/.
+  // (Adjust regex if you want to disallow dots.)
+  const min = 3, max = 32;
+  const re = /^[A-Za-z0-9._-]+$/;
+
+  if (u.length < min || u.length > max) {
+    return { ok: false, reason: `Username must be ${min}–${max} characters.` };
+  }
+  if (!re.test(u)) {
+    return { ok: false, reason: "Only letters, numbers, underscores, dashes, and dots are allowed." };
+  }
+  if (/^[._-]/.test(u) || /[._-]$/.test(u)) {
+    return { ok: false, reason: "Username cannot start or end with a dot, dash, or underscore." };
+  }
+  if (/\.\.|__|--/.test(u)) {
+    return { ok: false, reason: "Avoid repeating symbols like '..', '__', or '--'." };
+  }
+  return { ok: true };
+}
+
+const RESERVED_USERNAMES = new Set([
+  "admin","administrator","root","owner","system","support","moderator","mod",
+  "staff","dev","developer","api","service","services","null","undefined",
+  "bobrix","boblox"
+]);
+
+function nameTakenCaseInsensitive(accountsData, username) {
+  const target = username.toLowerCase();
+  for (const k of Object.keys(accountsData)) {
+    if (k.toLowerCase() === target) return true;
+  }
+  return false;
+}
+
+function suggestUsernames(base, accountsData, limit = 5) {
+  const suggestions = [];
+  let n = 1;
+  const baseSanitized = base.replace(/[^A-Za-z0-9_-]/g, "").slice(0, 24) || "player";
+  while (suggestions.length < limit && n < 1000) {
+    const candidate = `${baseSanitized}${n}`;
+    if (!nameTakenCaseInsensitive(accountsData, candidate)) {
+      suggestions.push(candidate);
+    }
+    n++;
+  }
+  return suggestions;
+}
+
+// --- Username availability endpoint ---
+app.get('/username/availability', (req, res) => {
+  const raw = req.query.username;
+  if (!raw) {
+    return res.status(400).json({ error: "username query param is required" });
+  }
+
+  const username = normalizeUsername(raw);
+
+  // Validate format
+  const v = validateUsername(username);
+  if (!v.ok) {
+    return res.status(200).json({
+      available: false,
+      code: 'INVALID_FORMAT',
+      reason: v.reason
+    });
+  }
+
+  // Reserved?
+  if (RESERVED_USERNAMES.has(username.toLowerCase())) {
+    return res.status(200).json({
+      available: false,
+      code: 'RESERVED',
+      reason: "This name is reserved."
+    });
+  }
+
+  // Exists?
+  const accountsData = JSON.parse(fs.readFileSync(ACCOUNTS_FILE, 'utf-8'));
+  if (nameTakenCaseInsensitive(accountsData, username)) {
+    return res.status(200).json({
+      available: false,
+      code: 'TAKEN',
+      reason: "That username is already taken.",
+      suggestions: suggestUsernames(username, accountsData)
+    });
+  }
+
+  return res.status(200).json({ available: true });
+});
+
+
 
 // Nodemailer transporter for Hostinger SMTP
 const transporter = nodemailer.createTransport({
