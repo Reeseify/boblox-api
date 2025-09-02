@@ -56,12 +56,20 @@
     "userid": 7
   },
   "Reese Thompson": {
-    "password": "    ",
+    "password": " ",
     "email": {
       "verified": false,
       "email": ""
     },
     "userid": 8
+  },
+  "David Thompson": {
+    "password": " ",
+    "email": {
+      "verified": false,
+      "email": ""
+    },
+    "userid": 9
   },
   "r": {
     "password": "r",
